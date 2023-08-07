@@ -2,27 +2,80 @@
 #
 # https://gqlgen.com/getting-started/
 
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  age: Int!
-  work: String!
+scalar DateTime
+scalar URL
+
+interface Node {
+    id: ID!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
+}
+
+
+type User implements Node{
+    id: ID!
+    userId: String!
+    name: String!
+    birth: DateTime
+    profile: String
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
+    icon: Icon
+    location: Location
+}
+type Icon implements Node{
+    id: ID!
+    iconUrl: URL!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
+}
+
+type Location implements Node{
+    id: ID!
+    locationName: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
 }
 
 type Query {
-  user(
-    id: Int!
-  ): User
+    node(
+        id: ID!
+    ): Node
 }
 
 input NewUser {
-  name: String!
-  email: String
-  age: Int
-  work: String
+    name: String!
+    brith: String
+    profile: String
+    icon: NewIcon
+    location: ID
+}
+input NewIcon {
+    iconUrl: URL!
+}
+input UpdateIcon {
+    id: ID!
+    iconUrl: URL!
+}
+input UpdateUser {
+    id: ID!
+    name: String
+    birth: String
+    profile: String
+    newIcon: NewIcon
+    updateIcon: UpdateIcon
+    location: ID
 }
 
 type Mutation {
-  createUser(input: NewUser!): User!
+    createUser(input: NewUser!): User!
+    updateUser(input: UpdateUser!): User!
+    deleteUser(id: ID!): Boolean!
+    createIcon(input: NewIcon!): Icon!
+    updateIcon(input: UpdateIcon!): Icon!
+    deleteIcon(id:ID!): Boolean!
 }

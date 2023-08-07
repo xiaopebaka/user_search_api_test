@@ -4,16 +4,13 @@ import (
 	"gorm.io/gorm"
 	"my_gql_server/graph/db"
 	"my_gql_server/graph/model"
-	"strconv"
 )
 
-func convertUser(user *db.User) *model.User {
+func convertUser(user *db.Users) *model.User {
 	return &model.User{
-		ID:    strconv.Itoa(int(user.ID)),
+		ID:    user.ID,
 		Name:  user.Name,
-		Email: user.Email,
-		Age:   user.Age,
-		Work:  user.Work,
+		Birth: user.Birth,
 	}
 }
 
@@ -22,7 +19,7 @@ type userService struct {
 }
 
 func (u userService) GetUser(id uint) (*model.User, error) {
-	var user *db.User
+	var user *db.Users
 	result := u.db.First(&user, id)
 	return convertUser(user), result.Error
 }

@@ -2,17 +2,89 @@
 
 package model
 
+import (
+	"net/url"
+	"time"
+)
+
+type Node interface {
+	IsNode()
+	GetID() string
+	GetCreatedAt() time.Time
+	GetUpdatedAt() time.Time
+	GetDeletedAt() *time.Time
+}
+
+type Icon struct {
+	ID        string     `json:"id"`
+	IconURL   url.URL    `json:"iconUrl"`
+	CreatedAt time.Time  `json:"createdAt"`
+	UpdatedAt time.Time  `json:"updatedAt"`
+	DeletedAt *time.Time `json:"deletedAt,omitempty"`
+}
+
+func (Icon) IsNode()                       {}
+func (this Icon) GetID() string            { return this.ID }
+func (this Icon) GetCreatedAt() time.Time  { return this.CreatedAt }
+func (this Icon) GetUpdatedAt() time.Time  { return this.UpdatedAt }
+func (this Icon) GetDeletedAt() *time.Time { return this.DeletedAt }
+
+type Location struct {
+	ID           string     `json:"id"`
+	LocationName string     `json:"locationName"`
+	CreatedAt    time.Time  `json:"createdAt"`
+	UpdatedAt    time.Time  `json:"updatedAt"`
+	DeletedAt    *time.Time `json:"deletedAt,omitempty"`
+}
+
+func (Location) IsNode()                       {}
+func (this Location) GetID() string            { return this.ID }
+func (this Location) GetCreatedAt() time.Time  { return this.CreatedAt }
+func (this Location) GetUpdatedAt() time.Time  { return this.UpdatedAt }
+func (this Location) GetDeletedAt() *time.Time { return this.DeletedAt }
+
+type NewIcon struct {
+	IconURL url.URL `json:"iconUrl"`
+}
+
 type NewUser struct {
-	Name  string  `json:"name"`
-	Email *string `json:"email,omitempty"`
-	Age   *int    `json:"age,omitempty"`
-	Work  *string `json:"work,omitempty"`
+	Name     string   `json:"name"`
+	Brith    *string  `json:"brith,omitempty"`
+	Profile  *string  `json:"profile,omitempty"`
+	Icon     *NewIcon `json:"icon,omitempty"`
+	Location *string  `json:"location,omitempty"`
+}
+
+type UpdateIcon struct {
+	ID      string  `json:"id"`
+	IconURL url.URL `json:"iconUrl"`
+}
+
+type UpdateUser struct {
+	ID         string      `json:"id"`
+	Name       *string     `json:"name,omitempty"`
+	Birth      *string     `json:"birth,omitempty"`
+	Profile    *string     `json:"profile,omitempty"`
+	NewIcon    *NewIcon    `json:"newIcon,omitempty"`
+	UpdateIcon *UpdateIcon `json:"updateIcon,omitempty"`
+	Location   *string     `json:"location,omitempty"`
 }
 
 type User struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
-	Age   int    `json:"age"`
-	Work  string `json:"work"`
+	ID        string     `json:"id"`
+	UserID    string     `json:"userId"`
+	Name      string     `json:"name"`
+	Birth     *time.Time `json:"birth,omitempty"`
+	Profile   *string    `json:"profile,omitempty"`
+	CreatedAt time.Time  `json:"createdAt"`
+	UpdatedAt time.Time  `json:"updatedAt"`
+	DeletedAt *time.Time `json:"deletedAt,omitempty"`
+	Icon      *Icon      `json:"icon,omitempty"`
+	Location  *Location  `json:"location,omitempty"`
 }
+
+func (User) IsNode()                       {}
+func (this User) GetID() string            { return this.ID }
+func (this User) GetCreatedAt() time.Time  { return this.CreatedAt }
+func (this User) GetUpdatedAt() time.Time  { return this.UpdatedAt }
+func (this User) GetDeletedAt() *time.Time { return this.DeletedAt }

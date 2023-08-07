@@ -15,10 +15,39 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
 }
 
+// UpdateUser is the resolver for the updateUser field.
+func (r *mutationResolver) UpdateUser(ctx context.Context, input model.UpdateUser) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: UpdateUser - updateUser"))
+}
+
+// DeleteUser is the resolver for the deleteUser field.
+func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteUser - deleteUser"))
+}
+
+// CreateIcon is the resolver for the createIcon field.
+func (r *mutationResolver) CreateIcon(ctx context.Context, input model.NewIcon) (*model.Icon, error) {
+	panic(fmt.Errorf("not implemented: CreateIcon - createIcon"))
+}
+
+// UpdateIcon is the resolver for the updateIcon field.
+func (r *mutationResolver) UpdateIcon(ctx context.Context, input model.UpdateIcon) (*model.Icon, error) {
+	panic(fmt.Errorf("not implemented: UpdateIcon - updateIcon"))
+}
+
+// DeleteIcon is the resolver for the deleteIcon field.
+func (r *mutationResolver) DeleteIcon(ctx context.Context, id string) (bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteIcon - deleteIcon"))
+}
+
 // User is the resolver for the user field.
-func (r *queryResolver) User(ctx context.Context, id int) (*model.User, error) {
-	//panic(fmt.Errorf("not implemented: User - user"))
-	return r.Srv.GetUser(uint(id))
+func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: User - user"))
+}
+
+// Users is the resolver for the users field.
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
+	panic(fmt.Errorf("not implemented: Users - users"))
 }
 
 // Mutation returns MutationResolver implementation.
@@ -29,13 +58,3 @@ func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//     it when you're done.
-//   - You have helper methods in this file. Move them out to keep these resolver files clean.
-func (r *queryResolver) Users(ctx context.Context) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: Users - users"))
-}
