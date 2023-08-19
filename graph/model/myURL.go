@@ -2,10 +2,9 @@ package model
 
 import (
 	"fmt"
+	"github.com/99designs/gqlgen/graphql"
 	"io"
 	"net/url"
-
-	"github.com/99designs/gqlgen/graphql"
 )
 
 func MarshalURL(u url.URL) graphql.Marshaler {
