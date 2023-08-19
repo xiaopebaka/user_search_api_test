@@ -3,6 +3,7 @@
 # https://gqlgen.com/getting-started/
 
 scalar DateTime
+scalar Date
 scalar URL
 
 interface Node {
@@ -17,7 +18,7 @@ type User implements Node{
     id: ID!
     userId: String!
     name: String!
-    birth: DateTime
+    birth: Date
     profile: String
     createdAt: DateTime!
     updatedAt: DateTime!
@@ -49,7 +50,7 @@ type Query {
 
 input NewUser {
     name: String!
-    brith: String
+    brith: Date
     profile: String
     icon: NewIcon
     location: ID
@@ -64,7 +65,7 @@ input UpdateIcon {
 input UpdateUser {
     id: ID!
     name: String
-    birth: String
+    birth: Date
     profile: String
     newIcon: NewIcon
     updateIcon: UpdateIcon

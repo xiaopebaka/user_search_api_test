@@ -91,3 +91,6 @@ models:
   URL:
     model:
       - my_gql_server/graph/model.URL
+  Date:
+    model:
+      - my_gql_server/graph/model.Date

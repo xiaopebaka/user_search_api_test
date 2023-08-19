@@ -48,11 +48,11 @@ type NewIcon struct {
 }
 
 type NewUser struct {
-	Name     string   `json:"name"`
-	Brith    *string  `json:"brith,omitempty"`
-	Profile  *string  `json:"profile,omitempty"`
-	Icon     *NewIcon `json:"icon,omitempty"`
-	Location *string  `json:"location,omitempty"`
+	Name     string     `json:"name"`
+	Brith    *time.Time `json:"brith,omitempty"`
+	Profile  *string    `json:"profile,omitempty"`
+	Icon     *NewIcon   `json:"icon,omitempty"`
+	Location *string    `json:"location,omitempty"`
 }
 
 type UpdateIcon struct {
@@ -63,7 +63,7 @@ type UpdateIcon struct {
 type UpdateUser struct {
 	ID         string      `json:"id"`
 	Name       *string     `json:"name,omitempty"`
-	Birth      *string     `json:"birth,omitempty"`
+	Birth      *time.Time  `json:"birth,omitempty"`
 	Profile    *string     `json:"profile,omitempty"`
 	NewIcon    *NewIcon    `json:"newIcon,omitempty"`
 	UpdateIcon *UpdateIcon `json:"updateIcon,omitempty"`

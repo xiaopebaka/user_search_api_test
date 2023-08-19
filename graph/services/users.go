@@ -4,11 +4,12 @@ import (
 	"gorm.io/gorm"
 	"my_gql_server/graph/db"
 	"my_gql_server/graph/model"
+	"strconv"
 )
 
 func convertUser(user *db.Users) *model.User {
 	return &model.User{
-		ID:    user.ID,
+		ID:    strconv.Itoa(int(user.ID)),
 		Name:  user.Name,
 		Birth: user.Birth,
 	}
