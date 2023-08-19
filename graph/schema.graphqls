@@ -16,7 +16,7 @@ interface Node {
 
 type User implements Node{
     id: ID!
-    userId: String!
+    accountId: String!
     name: String!
     birth: Date
     profile: String
@@ -42,10 +42,21 @@ type Location implements Node{
     deletedAt: DateTime
 }
 
+type UserRegistrationStatus{
+    id: ID!
+    accountId: String!
+    preRegisteredAt: DateTime!
+    registeredAt:    DateTime
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    deletedAt: DateTime
+}
+
 type Query {
     node(
         id: ID!
     ): Node
+    UserRegistrationStatus(userId: String!): UserRegistrationStatus
 }
 
 input NewUser {

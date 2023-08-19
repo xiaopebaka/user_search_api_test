@@ -72,7 +72,7 @@ type UpdateUser struct {
 
 type User struct {
 	ID        string     `json:"id"`
-	UserID    string     `json:"userId"`
+	AccountID string     `json:"accountId"`
 	Name      string     `json:"name"`
 	Birth     *time.Time `json:"birth,omitempty"`
 	Profile   *string    `json:"profile,omitempty"`
@@ -88,3 +88,13 @@ func (this User) GetID() string            { return this.ID }
 func (this User) GetCreatedAt() time.Time  { return this.CreatedAt }
 func (this User) GetUpdatedAt() time.Time  { return this.UpdatedAt }
 func (this User) GetDeletedAt() *time.Time { return this.DeletedAt }
+
+type UserRegistrationStatus struct {
+	ID              string     `json:"id"`
+	AccountID       string     `json:"accountId"`
+	PreRegisteredAt time.Time  `json:"preRegisteredAt"`
+	RegisteredAt    *time.Time `json:"registeredAt,omitempty"`
+	CreatedAt       time.Time  `json:"createdAt"`
+	UpdatedAt       time.Time  `json:"updatedAt"`
+	DeletedAt       *time.Time `json:"deletedAt,omitempty"`
+}

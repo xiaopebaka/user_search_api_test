@@ -30,7 +30,7 @@ func main() {
 	}
 
 	// Automatically migrate schema
-	err = db.AutoMigrate(&dataType.Users{}, &dataType.Locations{}, &dataType.Icons{})
+	err = db.AutoMigrate(&dataType.Users{}, &dataType.Locations{}, &dataType.Icons{}, &dataType.UserRegistrationStatus{})
 	if err != nil {
 		log.Fatal("Failed to connect to database: ", err)
 	}

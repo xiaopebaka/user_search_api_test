@@ -45,6 +45,11 @@ func (r *queryResolver) Node(ctx context.Context, id string) (model.Node, error)
 	panic(fmt.Errorf("not implemented: Node - node"))
 }
 
+// UserRegistrationStatus is the resolver for the UserRegistrationStatus field.
+func (r *queryResolver) UserRegistrationStatus(ctx context.Context, userID string) (*model.UserRegistrationStatus, error) {
+	panic(fmt.Errorf("not implemented: UserRegistrationStatus - UserRegistrationStatus"))
+}
+
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 

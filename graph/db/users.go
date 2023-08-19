@@ -6,8 +6,8 @@ import (
 )
 
 type Users struct {
-	ID         uint `gorm:"primaryKey;not null;autoIncrements"`
-	UserId     string
+	ID         uint   `gorm:"primaryKey;not null;autoIncrements"`
+	AccountId  string `gorm:"not null"`
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
 	DeletedAt  gorm.DeletedAt `gorm:"index"`
