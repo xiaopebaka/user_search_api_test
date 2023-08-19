@@ -6,7 +6,7 @@ import (
 )
 
 type Locations struct {
-	ID           string `gorm:"primaryKey;not null;type:varchar(255)"`
+	ID           uint `gorm:"primaryKey;not null;autoIncrement"`
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
 	DeletedAt    gorm.DeletedAt `gorm:"index"`
