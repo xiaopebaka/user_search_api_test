@@ -56,7 +56,7 @@ type Query {
     node(
         id: ID!
     ): Node
-    UserRegistrationStatus(userId: String!): UserRegistrationStatus
+    UserRegistrationStatus(accountId: String!): UserRegistrationStatus
 }
 
 input NewUser {

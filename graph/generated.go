@@ -74,7 +74,7 @@ type ComplexityRoot struct {
 
 	Query struct {
 		Node                   func(childComplexity int, id string) int
-		UserRegistrationStatus func(childComplexity int, userID string) int
+		UserRegistrationStatus func(childComplexity int, accountID string) int
 	}
 
 	User struct {
@@ -111,7 +111,7 @@ type MutationResolver interface {
 }
 type QueryResolver interface {
 	Node(ctx context.Context, id string) (model.Node, error)
-	UserRegistrationStatus(ctx context.Context, userID string) (*model.UserRegistrationStatus, error)
+	UserRegistrationStatus(ctx context.Context, accountID string) (*model.UserRegistrationStatus, error)
 }
 
 type executableSchema struct {
@@ -293,7 +293,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Query.UserRegistrationStatus(childComplexity, args["userId"].(string)), true
+		return e.complexity.Query.UserRegistrationStatus(childComplexity, args["accountId"].(string)), true
 
 	case "User.accountId":
 		if e.complexity.User.AccountID == nil {
@@ -636,14 +636,14 @@ func (ec *executionContext) field_Query_UserRegistrationStatus_args(ctx context.
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
-	if tmp, ok := rawArgs["userId"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("userId"))
+	if tmp, ok := rawArgs["accountId"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("accountId"))
 		arg0, err = ec.unmarshalNString2string(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["userId"] = arg0
+	args["accountId"] = arg0
 	return args, nil
 }
 
@@ -1613,7 +1613,7 @@ func (ec *executionContext) _Query_UserRegistrationStatus(ctx context.Context, f
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().UserRegistrationStatus(rctx, fc.Args["userId"].(string))
+		return ec.resolvers.Query().UserRegistrationStatus(rctx, fc.Args["accountId"].(string))
 	})
 	if err != nil {
 		ec.Error(ctx, err)

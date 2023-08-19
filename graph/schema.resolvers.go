@@ -46,8 +46,8 @@ func (r *queryResolver) Node(ctx context.Context, id string) (model.Node, error)
 }
 
 // UserRegistrationStatus is the resolver for the UserRegistrationStatus field.
-func (r *queryResolver) UserRegistrationStatus(ctx context.Context, userID string) (*model.UserRegistrationStatus, error) {
-	panic(fmt.Errorf("not implemented: UserRegistrationStatus - UserRegistrationStatus"))
+func (r *queryResolver) UserRegistrationStatus(ctx context.Context, accountID string) (*model.UserRegistrationStatus, error) {
+	return r.Srv.GetUserRegistrationStatus(accountID)
 }
 
 // Mutation returns MutationResolver implementation.
@@ -58,16 +58,3 @@ func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//     it when you're done.
-//   - You have helper methods in this file. Move them out to keep these resolver files clean.
-func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: User - user"))
-}
-func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
-	panic(fmt.Errorf("not implemented: Users - users"))
-}
